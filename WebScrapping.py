@@ -53,3 +53,11 @@ df = pd.DataFrame(
     })
 
 print(df)
+
+# Access the Quotes column
+# print(df['Quotes'].tolist())
+
+df = df.sort_values(by=['Authors'])
+print(df.head(10)['Quotes'])
+df = df.reset_index(drop=True) # resetting index
+print(df.head(10)['Quotes'])
