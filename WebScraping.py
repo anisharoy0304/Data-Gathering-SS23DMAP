@@ -1,5 +1,4 @@
 import pandas as pd
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,7 +16,7 @@ print(soup.a, "\n")
 quotes = soup.find_all('div', {'class': 'quote'})
 print((quotes[0].find('span', {'class':'text'})).text)
 
-print("Author:",(quotes[0].find("small", {"class": "author"})).text)
+print("Author:", (quotes[0].find("small", {"class": "author"})).text)
 
 tags = soup.findAll("div", {"class": "tags"})
 print("Tags:", (tags[0].find("meta"))['content'])
@@ -30,7 +29,7 @@ quotes = []
 authors = []
 tags = []
 
-# loop over page 1 to 10
+# loop over from page 1 to 10
 for pages in range(1, 10):
 
     html = requests.get(root + str(pages))
@@ -47,9 +46,9 @@ for pages in range(1, 10):
         tags.append((k.find("meta"))['content'])
 
 df = pd.DataFrame(
-    {'Quotes':quotes,
-     'Authors':authors,
-     'Tags':tags
+    {'Quotes': quotes,
+     'Authors': authors,
+     'Tags': tags
     })
 
 print(df)
